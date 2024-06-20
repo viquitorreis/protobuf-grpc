@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+// opcional: especifica o pacote protobuf, recomendado para evitar conflitos de nomes
+package hello;
+
+// opcional: especifica o pacote Go onde o código gerado será colocado
+option go_package = "proto-course/protogen/basic";
+
+message Hello {
+  string name = 1;
+}
