@@ -11,10 +11,7 @@ func main() {
 	log.SetFlags(0)
 	log.SetOutput(&logWriter{})
 
-	basic.BasicHello()
-
-	newUser := basic.BaseUser()
-	fmt.Println("novo user criado:", newUser)
+	basic.BaseUser()
 }
 
 type logWriter struct{}
