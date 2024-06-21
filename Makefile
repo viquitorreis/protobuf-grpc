@@ -16,6 +16,8 @@ endif
 protoc:
 	protoc --go_opt=module=${GO_MODULE} --go_out=. \
 	./proto/basic/*.proto \
+	./proto/first/*.proto \
+	./proto/jobsearch/*.proto \
 
 .PHONY: build
 build: clean protoc tidy
@@ -23,3 +25,6 @@ build: clean protoc tidy
 .PHONY: run
 run:
 	@go run *.go
+
+.PHONY: execute
+execute: build run

@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/any.proto";
+
 package user;
 
 option go_package="proto-course/protogen/basic"; // mudança nome para basic
@@ -14,6 +16,27 @@ message Address {
     string street = 1;
     string city = 2;
     string country = 3;
+    
+    Coordinate coordinate = 16;
+
+    message Coordinate {
+        double latitude = 1;
+        double longitude = 2;
+    }
+}
+
+message PaperMail {
+    string paper_mail_address = 1 [json_name = "paperl_mail_address"];
+}
+
+message InstantMessaging {
+    string instant_messaging_product = 1 [json_name = "instant_messaging_product"];
+    string instant_messaging_username = 2 [json_name = "instant_messaging_username"];
+}
+
+message SocialMedia {
+    string social_media_platform = 1 [json_name = "social_media_platform"];
+    string social_media_username = 2 [json_name = "social_media_username"];
 }
 
 message User {
@@ -25,4 +48,5 @@ message User {
     repeated string emails = 16;
     Gender gender = 17;
     Address address = 18; // campo deve ser minusculo
-} 
+    google.protobuf.Any communication_channel = 19 [json_name = "communication_channel"];
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package basic.application.pkg;
+
+option go_package = "proto-course/protogen/basic";
+
+/*
+Software
+*/
+message Application {
+    string name = 1;
+    string version = 2;
+    repeated string platforms = 3;
+}
