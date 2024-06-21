@@ -2,12 +2,18 @@ syntax = "proto3";
 
 package user;
 
-option go_package="proto-course/protogen/user";
+option go_package="proto-course/protogen/basic"; // mudança nome para basic
 
 enum Gender {
     GENDER_UNSPECIFIED = 0;
     GENDER_MALE = 1;
     GENDER_FEMALE = 2;
+}
+
+message Address {
+    string street = 1;
+    string city = 2;
+    string country = 3;
 }
 
 message User {
@@ -18,4 +24,5 @@ message User {
 
     repeated string emails = 16;
     Gender gender = 17;
-}
+    Address address = 18; // campo deve ser minusculo
+} 

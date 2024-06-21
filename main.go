@@ -11,7 +11,8 @@ func main() {
 	log.SetFlags(0)
 	log.SetOutput(&logWriter{})
 
-	basic.BaseUser()
+	// basic.BaseUser()
+	basic.BasicUserGroup()
 }
 
 type logWriter struct{}

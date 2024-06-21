@@ -2,19 +2,26 @@ package basic
 
 import (
 	"log"
-	"proto-course/protogen/user"
+	"proto-course/protogen/basic"
 
 	"google.golang.org/protobuf/encoding/protojson"
 )
 
 func BaseUser() {
-	newUser := user.User{
+	addr := basic.Address{
+		Street:  "random street",
+		City:    "random city",
+		Country: "Brazil",
+	}
+
+	newUser := basic.User{
 		Id:       1,
 		Username: "victorreis",
 		IsActive: true,
 		Password: []byte("helloworld"),
 		Emails:   []string{"teste@teste.com", "hello@world.com"},
-		Gender:   user.Gender_GENDER_MALE,
+		Gender:   basic.Gender_GENDER_MALE,
+		Address:  &addr,
 	}
 
 	jsonBytes, err := protojson.Marshal(&newUser)
@@ -26,13 +33,13 @@ func BaseUser() {
 }
 
 func ProtoJsonUser() {
-	p := user.User{
+	p := basic.User{
 		Id:       2,
 		Username: "randomwomen",
 		IsActive: true,
 		Password: []byte("pass123"),
 		Emails:   []string{"marie@teste.com", "test@teste.com"},
-		Gender:   user.Gender_GENDER_FEMALE,
+		Gender:   basic.Gender_GENDER_FEMALE,
 	}
 
 	jsonBytes, _ := protojson.Marshal(&p)
@@ -49,7 +56,7 @@ func JsonProtoUser() {
 				"gender":"GENDER_FEMALE"}
 			`
 
-	p := user.User{}
+	p := basic.User{}
 	err := protojson.Unmarshal([]byte(json), &p)
 	if err != nil {
 		log.Fatal("erro em json to proto user:", err)
