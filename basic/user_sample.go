@@ -188,3 +188,61 @@ func BasicUnmarshalAnyIs() {
 		log.Println("não é um paper mail e sim um:", a.TypeUrl)
 	}
 }
+
+func BasicUserOneOf() {
+	// socialMedia := basic.SocialMedia{
+	// 	SocialMediaPlatform: "randSocialMedia",
+	// 	SocialMediaUsername: "randUsername",
+	// }
+
+	// ecomm := basic.User_SocialMedia{
+	// 	SocialMedia: &socialMedia,
+	// }
+
+	instantMsg := basic.InstantMessaging{
+		InstantMessagingProduct:  "hello, how are you?",
+		InstantMessagingUsername: "randUsername",
+	}
+
+	ecomm := basic.User_InstantMessaging{
+		InstantMessaging: &instantMsg,
+	}
+
+	u := basic.User{
+		Id:                   96,
+		IsActive:             true,
+		Password:             []byte("helloworld"),
+		Emails:               []string{"victor@victor.victor"},
+		EletronicCommChannel: &ecomm,
+	}
+
+	jsonBytes, err := protojson.Marshal(&u)
+	if err != nil {
+		log.Fatal("erro em marshal user one of:", err)
+	}
+
+	log.Println(string(jsonBytes))
+}
+
+func BasicUserWithSkillRating() {
+	userSkillRating := map[string]uint32{
+		"randomSkill":  5,
+		"randomSkill2": 3,
+		"randomSkill3": 1,
+	}
+
+	u := basic.User{
+		Id:          96,
+		IsActive:    true,
+		Password:    []byte("helloworld"),
+		Emails:      []string{"victor@victor.victor"},
+		SkillRating: userSkillRating,
+	}
+
+	jsonBytes, err := protojson.Marshal(&u)
+	if err != nil {
+		log.Fatal("erro em marshal user one of:", err)
+	}
+
+	log.Println(string(jsonBytes))
+}

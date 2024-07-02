@@ -11,9 +11,8 @@ func main() {
 	log.SetFlags(0)
 	log.SetOutput(&logWriter{})
 
-	// basic.BasicUnmarshalAnyKnow()
-	// basic.BasicUnmarshalAnyUnknow()
-	basic.BasicUnmarshalAnyIs()
+	basic.WriteToJSONSample()
+	basic.ReadFromJSONSample()
 }
 
 type logWriter struct{}
