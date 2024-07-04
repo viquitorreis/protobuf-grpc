@@ -6,10 +6,12 @@ import (
 	"proto-course/protogen/basic"
 	"time"
 
+	"google.golang.org/genproto/googleapis/type/date"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/known/anypb"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 func BaseUser() {
@@ -20,13 +22,19 @@ func BaseUser() {
 	}
 
 	newUser := basic.User{
-		Id:       1,
-		Username: "victorreis",
-		IsActive: true,
-		Password: []byte("helloworld"),
-		Emails:   []string{"teste@teste.com", "hello@world.com"},
-		Gender:   basic.Gender_GENDER_MALE,
-		Address:  &addr,
+		Id:                 1,
+		Username:           "victorreis",
+		IsActive:           true,
+		Password:           []byte("helloworld"),
+		Emails:             []string{"teste@teste.com", "hello@world.com"},
+		Gender:             basic.Gender_GENDER_MALE,
+		Address:            &addr,
+		LastLoginTimestamp: timestamppb.New(time.Now()),
+		BirthDate: &date.Date{
+			Year:  1999,
+			Month: 02,
+			Day:   26,
+		},
 	}
 
 	jsonBytes, err := protojson.Marshal(&newUser)

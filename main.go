@@ -11,8 +11,7 @@ func main() {
 	log.SetFlags(0)
 	log.SetOutput(&logWriter{})
 
-	basic.WriteToJSONSample()
-	basic.ReadFromJSONSample()
+	basic.BaseUser()
 }
 
 type logWriter struct{}

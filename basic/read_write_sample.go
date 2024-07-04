@@ -63,6 +63,18 @@ func WriteToFileHelper() {
 	WriteProtoToFile(dummyUser(), "user.bin")
 }
 
+func ReadProtoFromFile(fname string, dest proto.Message) {
+	// lendo arquivo
+	b, err := os.ReadFile(fname)
+	if err != nil {
+		log.Fatal("erro ao ler arquivo:", err)
+	}
+
+	if err := proto.Unmarshal(b, dest); err != nil {
+		log.Fatal("erro ao fazer unmarshal:", err)
+	}
+}
+
 func BasicReadingUserBytesFile(fname string) {
 	// lendo arquivo bytes
 	userBytes, err := os.ReadFile(fname)

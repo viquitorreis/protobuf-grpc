@@ -1,6 +1,9 @@
 syntax = "proto3";
 
 import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+import "proto/google/type/date.proto";
+import "proto/google/type/latlng.proto";
 
 package user;
 
@@ -56,4 +59,9 @@ message User {
     }
 
     map<string, uint32> skill_rating = 22 [json_name = "skill_rating"];
+
+    google.protobuf.Timestamp last_login_timestamp = 23
+    [json_name = "last_login_timestamp"];
+    google.type.Date birth_date = 24 [json_name = "birth_date"];
+    google.type.LatLng last_location = 25 [json_name = "last_location"];
 }
