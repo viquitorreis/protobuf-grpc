@@ -1,5 +1,10 @@
 GO_MODULE := proto-course
 
+.PHONY: i-deps
+i-deps:
+	chmod +x ./install-deps.sh
+	./install-deps.sh
+
 .PHONY: tidy
 tidy:
 	go mod tidy
@@ -19,6 +24,7 @@ protoc:
 	./proto/first/*.proto \
 	./proto/jobsearch/*.proto \
 
+
 .PHONY: build
 build: clean protoc tidy
 
@@ -28,3 +34,12 @@ run:
 
 .PHONY: execute
 execute: build run
+
+.PHONY: protoc-validate
+protoc-validate:
+	protoc \
+	-I . \
+	-I ./validate/ \
+	--go_out=":./generated" \
+	--validate_out="lang=go:./generated" \
+	./proto/car/*.proto

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"proto-course/basic"
+	"proto-course/car"
 	"time"
 )
 
@@ -11,7 +11,7 @@ func main() {
 	log.SetFlags(0)
 	log.SetOutput(&logWriter{})
 
-	basic.BaseUser()
+	car.ValidateCar()
 }
 
 type logWriter struct{}
